@@ -1,0 +1,9 @@
+Retrieval-Augmented Generation (RAG) combines information retrieval with text generation. A RAG system retrieves relevant passages from a knowledge source and gives those passages to a language model as context. This can help the model answer questions using specific documents instead of relying only on its pre-trained knowledge.
+
+An embedding is a numerical representation of text. An embedding model maps a piece of text to a vector so that texts with related meanings can be close in vector space. Semantic search uses these representations to find meaning-related content, even when the query and document do not use exactly the same words.
+
+ChromaDB is a vector database that can store embeddings along with documents and metadata. When a user asks a question, the application embeds the question and searches for nearby document vectors. The retrieved chunks can then be passed to a language model.
+
+Chunking splits long documents into smaller pieces. Chunk overlap repeats a small amount of text between adjacent chunks to reduce the chance that a useful sentence is split at a boundary. Top-k retrieval means returning the k nearest matching chunks.
+
+RAG has limitations. Retrieval can return irrelevant text, source documents can be incomplete, and a language model can still generate unsupported statements. A reliable application should show sources and say when the available context is insufficient.

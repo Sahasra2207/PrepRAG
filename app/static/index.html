@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PrepRAG — Placement Preparation</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand-mark">P</div>
+    <div>
+      <div class="brand">PrepRAG</div>
+      <div class="tagline">Placement preparation grounded in your study material</div>
+    </div>
+    <span id="health" class="status">Checking backend…</span>
+  </header>
+
+  <main class="layout">
+    <section class="intro">
+      <p class="eyebrow">YOUR STUDY MATERIAL, SEARCHABLE</p>
+      <h1>Prepare smarter.<br><span>Understand deeply.</span></h1>
+      <p class="intro-copy">Upload notes, ask technical questions, and inspect the source chunks used for your answer.</p>
+      <div class="stats">
+        <div class="stat"><strong id="doc-count">0</strong><span>documents</span></div>
+        <div class="stat"><strong id="chunk-count">0</strong><span>indexed chunks</span></div>
+      </div>
+    </section>
+
+    <section class="panel upload-panel">
+      <div class="section-heading">
+        <div><p class="eyebrow">STEP 01</p><h2>Add study material</h2></div>
+        <span class="step-icon">↥</span>
+      </div>
+      <p class="muted">Supported formats: PDF, TXT, Markdown. Maximum file size: 10 MB.</p>
+      <label class="dropzone" for="file-input">
+        <span class="upload-symbol">↑</span>
+        <strong>Choose a document</strong>
+        <span id="file-name">or click here to browse</span>
+        <input id="file-input" type="file" accept=".pdf,.txt,.md">
+      </label>
+      <button id="upload-btn" class="button primary" type="button">Upload and index</button>
+      <button id="sample-btn" class="button secondary" type="button">Load sample study notes</button>
+      <div id="upload-message" class="message" role="status"></div>
+      <div class="documents-wrap">
+        <h3>Indexed documents</h3>
+        <ul id="document-list" class="document-list"><li class="empty">No documents indexed yet.</li></ul>
+      </div>
+    </section>
+
+    <section class="panel ask-panel">
+      <div class="section-heading">
+        <div><p class="eyebrow">STEP 02</p><h2>Ask a question</h2></div>
+        <span class="step-icon">✳</span>
+      </div>
+      <p class="muted">Ask a question related to the documents you uploaded.</p>
+      <label class="field-label" for="question">Your question</label>
+      <textarea id="question" rows="3" placeholder="Example: What is RAG, and how does it work?"></textarea>
+      <div class="ask-actions">
+        <label class="topk-label" for="top-k">Source chunks
+          <select id="top-k"><option value="3">3</option><option value="4" selected>4</option><option value="5">5</option><option value="6">6</option></select>
+        </label>
+        <button id="ask-btn" class="button primary" type="button">Get answer <span>→</span></button>
+      </div>
+      <div id="ask-message" class="message" role="status"></div>
+      <div id="answer-area" class="answer-area hidden">
+        <div class="answer-title"><h3>Answer</h3><span id="answer-mode" class="mode-pill"></span></div>
+        <div id="answer-text" class="answer-text"></div>
+        <div id="warning" class="warning hidden"></div>
+        <div class="sources-heading"><h3>Retrieved sources</h3><span>Evidence used by PrepRAG</span></div>
+        <div id="sources" class="sources"></div>
+      </div>
+    </section>
+
+    <section class="panel feature-panel" id="quiz-panel">
+      <div class="section-heading"><div><p class="eyebrow">STEP 03</p><h2>Study-material quiz</h2></div><span class="step-icon">✓</span></div>
+      <p class="muted">Generate a multiple-choice quiz from indexed study notes. Review explanations and source references after submitting.</p>
+      <div class="inline-controls"><label class="field-label" for="quiz-count">Questions <select id="quiz-count"><option>5</option><option>8</option><option>10</option></select></label><button id="generate-quiz-btn" class="button primary" type="button">Generate quiz</button></div>
+      <div id="quiz-message" class="message" role="status"></div><div id="quiz-area"></div>
+    </section>
+
+    <section class="panel feature-panel" id="mock-panel">
+      <div class="section-heading"><div><p class="eyebrow">STEP 04</p><h2>Company mock interview</h2></div><span class="step-icon">◉</span></div>
+      <p class="muted">Practise curated interview prompts by company. Think through your answer before opening the answer guide, then rate and save your practice.</p>
+      <div class="mock-controls"><label class="field-label" for="mock-company">Company<select id="mock-company"><option>General</option><option>Google</option><option>Amazon</option><option>Microsoft</option><option>TCS</option><option>Infosys</option><option>Accenture</option></select></label><label class="field-label" for="mock-category">Category<select id="mock-category"><option>All</option><option>DSA</option><option>OOP</option><option>DBMS</option><option>HR</option><option>Projects</option><option>System design</option></select></label><button id="load-mock-btn" class="button primary" type="button">Load questions</button></div>
+      <div id="mock-message" class="message" role="status"></div><div id="mock-area"></div>
+    </section>
+
+    <section class="panel feature-panel" id="progress-panel">
+      <div class="section-heading"><div><p class="eyebrow">STEP 05</p><h2>Your preparation progress</h2></div><span class="step-icon">↗</span></div>
+      <p class="muted">Scores and practice history are saved locally on this computer. Weak topics appear after at least two quiz answers in a topic with accuracy below 70%.</p>
+      <button id="refresh-progress-btn" class="button secondary" type="button">Refresh progress</button><div id="progress-area" class="progress-area"></div>
+    </section>
+  </main>
+  <footer>PrepRAG MVP · RAG, quizzes, mock interviews and local progress tracking</footer>
+  <script src="/static/app.js"></script>
+</body>
+</html>
